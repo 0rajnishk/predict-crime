@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script>
+    const GOOGLE_MAPS_API_URL = '/proxy?url=https://maps.googleapis.com/maps/api/js?key=AIzaSyC1RhaxHERmptd8axCftEWFi4t6NasiIcY';
+    const script = document.createElement('script');
+    script.src = GOOGLE_MAPS_API_URL;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  </script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1RhaxHERmptd8axCftEWFi4t6NasiIcY&libraries=places"></script> -->
+  
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Todo | Redux Fundamental Example</title>
+  <!-- Add your CSS and fonts here -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
+</html>
