@@ -31,17 +31,6 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      # Add steps for frontend-specific setup and deployment
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '19'
-
-      - name: Install frontend dependencies and build
-        working-directory: ./frontend
-        run: |
-          npm install --force
-          npm run build
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
