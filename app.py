@@ -195,21 +195,23 @@ print(f"Test Loss (Combined Data): {test_loss_combined:.4f}, Test Accuracy (Comb
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        data = request.get_json()
+        df = pd.read_csv('model/crime.csv')
+        Data = request.get_json()
 
-        day = int(data['day'])
-        month = int(data['month'])
-        year = int(data['year'])
-        neighborhood = data['neighborhood']
+        day = int(Data['day'])
+        month = int(Data['month'])
+        year = int(Data['year'])
+        neighborhood = Data['neighborhood']
 
-        # Preprocess the input data
+        # Preprocess the input Data
         new_input = pd.DataFrame({
             'day': [day],
             'month': [month],
             'year': [year],
             'neighborho': [neighborhood]
         })
-                # Prepare a list to store the data
+
+        # Prepare a list to store the data
 
         neighb_entries = df[df['neighborho'].str.contains(neighborhood, case=False, na=False)]
 
@@ -255,14 +257,16 @@ def predict():
             "knn_predicted_class": str(knn_predicted_class),
             "decision_tree_predicted_class": str(decision_tree_predicted_class),
             "final_predicted_class": str(knn_predicted_class),
-            "city": str(neighborhood)
-            "historical_crimes": crime_hist
+            "city": str(neighborhood),
+            "historical_crimes": crime_hist  # Use the list directly
         }
 
         return jsonify(result)
 
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
