@@ -209,6 +209,28 @@ def predict():
             'year': [year],
             'neighborho': [neighborhood]
         })
+                # Prepare a list to store the data
+
+        neighb_entries = df[df['neighborho'].str.contains(neighborhood, case=False, na=False)]
+
+        # Prepare a list to store the data
+        crime_hist = [ ]
+        iteration_count = 0
+
+    # Iterate through the filtered rows and add them to the list
+        for index, row in neighb_entries.iterrows():
+            crime_hist.append({
+                'neighborhood': row['neighborho'],
+                'address': row['address'],
+                'offense_ca': row['offense_ca'],
+                'incident_t': row['incident_t']
+            })
+            iteration_count += 1
+
+            # Check if the counter has reached 20, and break out of the loop if so
+            if iteration_count >= 20:
+                break
+
 
         new_input_encoded = pd.get_dummies(new_input, columns=['neighborho'])
         new_input_encoded = new_input_encoded.reindex(columns=X_train.columns, fill_value=0)
@@ -234,6 +256,7 @@ def predict():
             "decision_tree_predicted_class": str(decision_tree_predicted_class),
             "final_predicted_class": str(knn_predicted_class),
             "city": str(neighborhood)
+            "historical_crimes": crime_hist
         }
 
         return jsonify(result)
