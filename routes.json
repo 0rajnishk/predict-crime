@@ -1,0 +1,13 @@
+[
+    {
+      "route": "/result",
+      "serve": "/index.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/result/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ]
+  
